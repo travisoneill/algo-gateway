@@ -21,9 +21,10 @@ def hello():
 
 @app.route('/')
 def reroute():
-    res = requests.get('http://localhost:' + ports['static']+ '/' )
-    print(res)
-    return res.content
+    # res = requests.get('http://localhost:' + ports['static']+ '/' )
+    # print(res)
+    # return res.content
+    return('Hello!  Api Gateway is running.')
 
 @app.route('/<path:params>')
 def root(params):
