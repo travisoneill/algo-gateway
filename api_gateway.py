@@ -21,10 +21,9 @@ def hello():
 
 @app.route('/')
 def reroute():
-    return 'API gateway running!\nNo functionality until other services deployed.'
-    # res = requests.get('http://localhost:' + ports['static']+ '/' )
-    # print(res)
-    # return res.content
+    res = requests.get('http://localhost:' + ports['static']+ '/' )
+    print(res)
+    return res.content
 
 @app.route('/<path:params>')
 def root(params):
