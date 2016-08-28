@@ -60,8 +60,5 @@ def reroute():
 #         print(jsonify(final_data))
 #     return jsonify(final_data)
 
-#gunicorn
-#tornado
-
 if __name__  == "__main__":
     app.run()
