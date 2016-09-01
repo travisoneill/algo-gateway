@@ -16,8 +16,8 @@ def root():
 def send():
     #deploy
     urls = {
-        'node': 'https://flask-algo.appspot.com',
-        'flask': 'https://tough-hull-141417.appspot.com'
+        'flask': 'https://flask-algo.appspot.com',
+        'node': 'https://tough-hull-141417.appspot.com'
     }
     #local
     # urls = {
