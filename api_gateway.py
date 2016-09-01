@@ -14,20 +14,27 @@ def root():
 
 @app.route('/api/algos', methods=['POST'])
 def send():
+    #deploy
     urls = {
         'node': 'https://flask-algo.appspot.com',
         'flask': 'https://tough-hull-141417.appspot.com'
     }
+    #local
+    # urls = {
+    #     'node': "http://localhost:8001",
+    #     'flask': "http://localhost:8002",
+    # }
+
     services = {
         'javascript': 'node',
         'python': 'flask'
     }
 
     incoming_data = request.get_json()
-    print("INCOMING")
-    print(incoming_data)
-    print("JSON")
-    print(json.dumps(incoming_data))
+    # print("INCOMING")
+    # print(incoming_data)
+    # print("JSON")
+    # print(json.dumps(incoming_data))
     test_params = incoming_data['lengthArr']
     responses = []
     final_data = {}
@@ -41,9 +48,10 @@ def send():
         outgoing_data = {'lengthArr': test_params, 'request_data': request_data}
         headers = {'Content-Type' : 'application/json'}
         res = requests.post(request_url, data=json.dumps(outgoing_data), headers=headers)
+        print('RESPONSE')
         print(res)
         final_data[key] =  json.loads(res.content)
-        print(jsonify(final_data))
+        # print(jsonify(final_data))
     return jsonify(final_data)
 
 if __name__  == "__main__":
