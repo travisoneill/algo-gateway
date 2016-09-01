@@ -1,17 +1,6 @@
 import requests
 from flask import Flask, request, redirect, json, jsonify, send_from_directory
 
-# ports = {
-#     'node': "8001",
-#     'flask': "8002",
-#     'static': "8003"
-# }
-#
-# services = {
-#     'javascript': 'node',
-#     'python': 'flask'
-# }
-
 app = Flask(__name__, static_url_path='')
 
 @app.route('/test')
@@ -22,22 +11,18 @@ def hello():
 @app.route('/')
 def root():
     return send_from_directory('', 'index.html')
-    # res = requests.get('http://localhost:' + ports['static']+ '/' )
-    # print(res)
-    # return res.content
-    # return('Hello!  Api Gateway is running.')
-
-# @app.route('/<path:params>')
-# def root(params):
-#     if params == '':
-#         res = requests.get('http://localhost:' + ports['static']+ '/' )
-#         return res.content
-#     else:
-#         url = 'http://localhost:' + ports['static']+ '/' + params
-#         return redirect(url, code=302, Response=None)
 
 @app.route('/api/algos', methods=['POST'])
 def send():
+    urls = {
+        'node': 'https://flask-algo.appspot.com',
+        'flask': 'https://tough-hull-141417.appspot.com'
+    }
+    services = {
+        'javascript': 'node',
+        'python': 'flask'
+    }
+
     incoming_data = request.get_json()
     print("INCOMING")
     print(incoming_data)
@@ -52,7 +37,7 @@ def send():
             continue
         language = request_data['language']
         server = services[language]
-        request_url = 'http://localhost:' + ports[server] + request.path
+        request_url = urls[server] + request.path
         outgoing_data = {'lengthArr': test_params, 'request_data': request_data}
         headers = {'Content-Type' : 'application/json'}
         res = requests.post(request_url, data=json.dumps(outgoing_data), headers=headers)
